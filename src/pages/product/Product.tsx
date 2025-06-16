@@ -35,12 +35,7 @@ const Product = () => {
               src="https://media.istockphoto.com/id/1427276149/vector/abstract-arrow-direction-technology-background.jpg?s=612x612&w=0&k=20&c=KQKxMDhnPGq1-idJW4b67ZgJTeZeMsIp3B9R4PTgeWE="
               alt=""
             />
-            <Button
-              variant="primary"
-              style={{ padding: "2px 5px" }}
-              id="btn"
-              className="btn-red"
-            >
+            <Button variant="primary" id="btn" className="mt-2 w-full !py-3">
               Add to Cart
             </Button>
           </div>
