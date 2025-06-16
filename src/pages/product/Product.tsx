@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import Container from "../../components/container/Container";
+import Button from "../../components/button/Button";
 
 const Product = () => {
   const params = useParams();
@@ -34,9 +35,14 @@ const Product = () => {
               src="https://media.istockphoto.com/id/1427276149/vector/abstract-arrow-direction-technology-background.jpg?s=612x612&w=0&k=20&c=KQKxMDhnPGq1-idJW4b67ZgJTeZeMsIp3B9R4PTgeWE="
               alt=""
             />
-            <div>
-              <button>Add to Cart</button>
-            </div>
+            <Button
+              variant="primary"
+              style={{ padding: "2px 5px" }}
+              id="btn"
+              className="btn-red"
+            >
+              Add to Cart
+            </Button>
           </div>
         </div>
       </Container>
