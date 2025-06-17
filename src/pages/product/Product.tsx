@@ -4,16 +4,21 @@ import Button from "../../components/button/Button";
 import { useEffect, useState } from "react";
 import { getProduct } from "../../services/api-client";
 import type { Products } from "../../types/server";
+import { useShoppingCartContex } from "../../context/ShoppingCartContext";
 
 const Product = () => {
   const params = useParams<{ id: string }>();
   const [product, setProduct] = useState<Products>();
+
+  const { handelIncreaseProductQty, cartItems } = useShoppingCartContex();
 
   useEffect(() => {
     getProduct(params.id as string).then((data) => {
       setProduct(data);
     });
   }, []);
+
+  console.log(cartItems);
 
   return (
     <div>
@@ -29,7 +34,14 @@ const Product = () => {
 
           <div className=" col-span-2 p-4 bg-sky-200">
             <img className="rounded" src={product?.image} alt="" />
-            <Button variant="primary" id="btn" className="mt-2 w-full !py-3">
+            <Button
+              onClick={() =>
+                handelIncreaseProductQty(parseInt(params.id as string))
+              }
+              variant="primary"
+              id="btn"
+              className="mt-2 w-full !py-3"
+            >
               Add to Cart
             </Button>
           </div>
