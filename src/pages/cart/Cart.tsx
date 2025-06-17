@@ -1,8 +1,10 @@
 import Button from "../../components/button/Button";
 import CartItem from "../../components/cartItem/CartItem";
 import Container from "../../components/container/Container";
+import { useShoppingCartContex } from "../../context/ShoppingCartContext";
 
 const Cart = () => {
+  const { cartItems } = useShoppingCartContex();
   return (
     <div>
       <Container>
