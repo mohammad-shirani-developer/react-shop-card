@@ -15,7 +15,7 @@ const Product = () => {
     cartItems,
     handelDecreaseProductQty,
     getProductQty,
-    handelRemoveProduct,
+    handleRemoveProduct,
   } = useShoppingCartContex();
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const Product = () => {
                 </div>
                 <Button
                   onClick={() =>
-                    handelRemoveProduct(parseInt(params.id as string))
+                    handleRemoveProduct(parseInt(params.id as string))
                   }
                   variant="danger"
                   id="btn"
