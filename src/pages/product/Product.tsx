@@ -10,7 +10,8 @@ const Product = () => {
   const params = useParams<{ id: string }>();
   const [product, setProduct] = useState<Products>();
 
-  const { handelIncreaseProductQty, cartItems } = useShoppingCartContex();
+  const { handelIncreaseProductQty, cartItems, handelDecreaseProductQty } =
+    useShoppingCartContex();
 
   useEffect(() => {
     getProduct(params.id as string).then((data) => {
@@ -43,6 +44,16 @@ const Product = () => {
               className="mt-2 w-full !py-3"
             >
               Add to Cart
+            </Button>
+            <Button
+              onClick={() =>
+                handelDecreaseProductQty(parseInt(params.id as string))
+              }
+              variant="danger"
+              id="btn"
+              className="mt-2 w-full !py-3"
+            >
+              -
             </Button>
           </div>
         </div>
