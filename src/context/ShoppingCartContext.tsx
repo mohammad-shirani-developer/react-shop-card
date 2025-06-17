@@ -13,6 +13,7 @@ interface shoppingCartContext {
   cartItems: CartItem[];
   handelIncreaseProductQty: (id: number) => void;
   handelDecreaseProductQty: (id: number) => void;
+  getProductQty: (id: number) => number;
 }
 
 export const ShoppingCartContext = createContext({} as shoppingCartContext);
@@ -58,9 +59,18 @@ export function ShoppingCartProvider({ children }: Props) {
     });
   };
 
+  const getProductQty = (id: number) => {
+    return cartItems.find((item) => item.id === id)?.qty || 0;
+  };
+
   return (
     <ShoppingCartContext.Provider
-      value={{ cartItems, handelIncreaseProductQty, handelDecreaseProductQty }}
+      value={{
+        cartItems,
+        handelIncreaseProductQty,
+        handelDecreaseProductQty,
+        getProductQty,
+      }}
     >
       {children}
     </ShoppingCartContext.Provider>
