@@ -39,29 +39,46 @@ const Product = () => {
 
           <div className=" col-span-2 p-4 bg-sky-200">
             <img className="rounded" src={product?.image} alt="" />
-            <Button
-              onClick={() =>
-                handelIncreaseProductQty(parseInt(params.id as string))
-              }
-              variant="primary"
-              id="btn"
-              className="mt-2 w-full !py-3"
-            >
-              Add to Cart
-            </Button>
+            {getProductQty(parseInt(params.id as string)) === 0 ? (
+              <Button
+                onClick={() =>
+                  handelIncreaseProductQty(parseInt(params.id as string))
+                }
+                variant="primary"
+                id="btn"
+                className="mt-2 w-full"
+              >
+                Add to Cart
+              </Button>
+            ) : (
+              <div className="grid grid-cols-3">
+                <Button
+                  onClick={() =>
+                    handelIncreaseProductQty(parseInt(params.id as string))
+                  }
+                  variant="primary"
+                  id="btn"
+                  className="mt-2 w-full"
+                >
+                  +
+                </Button>
+                <span className="flex justify-center items-center">
+                  {" "}
+                  {getProductQty(parseInt(params.id as string))}
+                </span>
 
-            {getProductQty(parseInt(params.id as string))}
-
-            <Button
-              onClick={() =>
-                handelDecreaseProductQty(parseInt(params.id as string))
-              }
-              variant="danger"
-              id="btn"
-              className="mt-2 w-full !py-3"
-            >
-              -
-            </Button>
+                <Button
+                  onClick={() =>
+                    handelDecreaseProductQty(parseInt(params.id as string))
+                  }
+                  variant="danger"
+                  id="btn"
+                  className="mt-2 w-full "
+                >
+                  -
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </Container>
