@@ -15,6 +15,7 @@ const Product = () => {
     cartItems,
     handelDecreaseProductQty,
     getProductQty,
+    handelRemoveProduct,
   } = useShoppingCartContex();
 
   useEffect(() => {
@@ -22,8 +23,6 @@ const Product = () => {
       setProduct(data);
     });
   }, []);
-
-  console.log(cartItems);
 
   return (
     <div>
@@ -51,33 +50,44 @@ const Product = () => {
                 Add to Cart
               </Button>
             ) : (
-              <div className="grid grid-cols-3">
-                <Button
-                  onClick={() =>
-                    handelIncreaseProductQty(parseInt(params.id as string))
-                  }
-                  variant="primary"
-                  id="btn"
-                  className="mt-2 w-full"
-                >
-                  +
-                </Button>
-                <span className="flex justify-center items-center">
-                  {" "}
-                  {getProductQty(parseInt(params.id as string))}
-                </span>
+              <>
+                <div className="grid grid-cols-3">
+                  <Button
+                    onClick={() =>
+                      handelIncreaseProductQty(parseInt(params.id as string))
+                    }
+                    variant="primary"
+                    id="btn"
+                    className="mt-2 w-full"
+                  >
+                    +
+                  </Button>
+                  <span className="flex justify-center items-center">
+                    {getProductQty(parseInt(params.id as string))}
+                  </span>
 
+                  <Button
+                    onClick={() =>
+                      handelDecreaseProductQty(parseInt(params.id as string))
+                    }
+                    variant="danger"
+                    id="btn"
+                    className="mt-2 w-full "
+                  >
+                    -
+                  </Button>
+                </div>
                 <Button
                   onClick={() =>
-                    handelDecreaseProductQty(parseInt(params.id as string))
+                    handelRemoveProduct(parseInt(params.id as string))
                   }
                   variant="danger"
                   id="btn"
-                  className="mt-2 w-full "
+                  className="mt-2 w-full"
                 >
-                  -
+                  Remove
                 </Button>
-              </div>
+              </>
             )}
           </div>
         </div>

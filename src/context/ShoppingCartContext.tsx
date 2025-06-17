@@ -14,6 +14,7 @@ interface shoppingCartContext {
   handelIncreaseProductQty: (id: number) => void;
   handelDecreaseProductQty: (id: number) => void;
   getProductQty: (id: number) => number;
+  handelRemoveProduct: (id: number) => void;
 }
 
 export const ShoppingCartContext = createContext({} as shoppingCartContext);
@@ -59,6 +60,12 @@ export function ShoppingCartProvider({ children }: Props) {
     });
   };
 
+  const handelRemoveProduct = (id: number) => {
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => item.id !== id)
+    );
+  };
+
   const getProductQty = (id: number) => {
     return cartItems.find((item) => item.id === id)?.qty || 0;
   };
@@ -70,6 +77,7 @@ export function ShoppingCartProvider({ children }: Props) {
         handelIncreaseProductQty,
         handelDecreaseProductQty,
         getProductQty,
+        handelRemoveProduct,
       }}
     >
       {children}
